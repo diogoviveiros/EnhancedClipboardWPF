@@ -1,0 +1,145 @@
+﻿<Window x:Class="EnhancedClipboardWPF.WebEditor"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:EnhancedClipboardWPF"
+        mc:Ignorable="d"
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        Title="WebEditor"
+        Background="#282828">
+
+    <WindowChrome.WindowChrome>
+        <WindowChrome CaptionHeight="48" ResizeBorderThickness="{x:Static SystemParameters.WindowResizeBorderThickness}" />
+    </WindowChrome.WindowChrome>
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        
+        <Grid MouseLeftButtonDown="TitleBar_MouseDown">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="48"/>
+
+            </Grid.RowDefinitions>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" >
+
+                <Border BorderThickness="1" BorderBrush="#9b9b9b" CornerRadius="1" Padding="1" Width="260" Background="#9b9b9b" Margin="0,0,445,0" 
+HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+
+                <Button x:Name="btnClose" Content="X"  WindowChrome.IsHitTestVisibleInChrome="True"  Width="50" Height="40" BorderBrush="#282828" BorderThickness="0" Foreground="#FFFFFF" 
+                Click="btnClose_Click">
+
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="Button">
+                                        <Border Background="{TemplateBinding Background}" BorderBrush="Transparent" BorderThickness="1">
+                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="#333333"/>
+                                    <Setter Property="BorderBrush" Value="Transparent"/>
+                                </Trigger>
+                                <Trigger Property="IsMouseOver" Value="False">
+                                    <Setter Property="Background" Value="#282828"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+
+                </Button>
+
+
+            </StackPanel>
+
+
+        </Grid>
+
+        <StackPanel  Margin="0,50,0,0" Background="#282828">
+            <ComboBox x:Name="RibbonComboboxFormat" Width="160" Margin="0,0,0,0" HorizontalAlignment="Left" SelectionChanged="RibbonComboboxFormat_SelectionChanged" >
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Value}" />
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+            <StackPanel Orientation="Horizontal">
+                <ComboBox  x:Name="RibbonComboboxFonts" Width="160" SelectionChanged="RibbonComboboxFonts_SelectionChanged"/>
+                <ComboBox x:Name="RibbonComboboxFontHeight" Width="50" SelectionChanged="RibbonComboboxFontHeight_SelectionChanged"/>
+
+                <StackPanel Orientation="Horizontal">
+                    <Button x:Name="SaveTemplate" Click="RibbonButtonSave_Click">Save Template</Button>
+                    <Button x:Name="RibbonButtonCopy" Click="RibbonButtonCopy_Click">Copy but Don't Save</Button>
+                </StackPanel>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal">
+                <Button x:Name="SettingsBold" Click="SettingsBold_Click">
+                    <Image Source="Resources/Images/bold.png"></Image>
+                </Button>
+
+                <Button x:Name="SettingsItalic" Click="SettingsItalic_Click">
+                    <Image Source="/Resources/Images/italic.png"/>
+
+                </Button>
+                <Button x:Name="SettingsUnderLine" Click="SettingsUnderLine_Click">
+                    <Image Source="Resources/Images/UnderLine.png"></Image>
+                </Button>
+                <Button x:Name="SettingsFontColor" Click="SettingsFontColor_Click">
+                    <Image Source="Resources/Images/Color.png"></Image>
+                </Button>
+
+                <Button x:Name="SettingsBackColor" Click="SettingsBackColor_Click">
+                    <Image Source="Resources/Images/backcolor.png"></Image>
+                </Button>
+                <Button x:Name="SettingsAddLink" Click="SettingsAddLink_Click">
+                    <Image Source="Resources/Images/link.png"></Image>
+                </Button>
+                <Button x:Name="SettingsAddImage" Click="SettingsAddImage_Click">
+                    <Image Source="Resources/Images/image.png"></Image>
+                </Button>
+                <Button x:Name="SettingsLeftAlign" Click="SettingsLeftAlign_Click">
+                    <Image Source="Resources/Images/LeftAlign.png"></Image>
+                </Button>
+                <Button x:Name="SettingsCenter2" Click="SettingsCenter2_Click">
+                    <Image Source="Resources/Images/center2.png"></Image>
+                </Button>
+                <Button x:Name="SettingsRightAlign" Click="SettingsJustifyRight_Click">
+                    <Image Source="Resources/Images/RightAlign.png"></Image>
+                </Button>
+                <Button x:Name="SettingsCenter" Click="SettingsJustifyFull_Click">
+                    <Image Source="Resources/Images/center.png"></Image>
+                </Button>
+                <Button x:Name="SettingsNumbered" Click="SettingsInsertOrderedList_Click">
+                    <Image Source="Resources/Images/Numbered.png"></Image>
+                </Button>
+                <Button x:Name="SettingsBullets" Click="SettingsBullets_Click">
+                    <Image Source="Resources/Images/bullets.png"></Image>
+                </Button>
+                <Button x:Name="SettingsOutIdent" Click="SettingsOutIdent_Click">
+                    <Image Source="Resources/Images/OutIndent.png"></Image>
+                </Button>
+                <Button x:Name="SettingsIndent" Click="SettingsIdent_Click">
+                    <Image Source="Resources/Images/indent.png"></Image>
+                </Button>
+                <Button x:Name="InsertTemplateModifier" Click="InsertTemplateModifier_Click" >[-->x&lt;--]
+
+                </Button>
+            </StackPanel>
+        </StackPanel>
+
+        <local:WPFWebBrowser x:Name="webBrowserEditor"  Grid.Row="1" />
+        <local:HtmlEditor x:Name="HtmlEditor1"  Grid.Row="1" Visibility="Hidden"/>
+    </Grid>
+</Window>

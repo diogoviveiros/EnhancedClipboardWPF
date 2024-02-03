@@ -1,0 +1,110 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Resources\NewFolder\**" />
+    <EmbeddedResource Remove="Resources\NewFolder\**" />
+    <None Remove="Resources\NewFolder\**" />
+    <Page Remove="Resources\NewFolder\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Resources\Images\backcolor.png" />
+    <None Remove="Resources\Images\bold.png" />
+    <None Remove="Resources\Images\bullets.png" />
+    <None Remove="Resources\Images\center.png" />
+    <None Remove="Resources\Images\center2.png" />
+    <None Remove="Resources\Images\Color.png" />
+    <None Remove="Resources\Images\Editor.png" />
+    <None Remove="Resources\Images\html.png" />
+    <None Remove="Resources\Images\image.png" />
+    <None Remove="Resources\Images\indent.png" />
+    <None Remove="Resources\Images\italic.png" />
+    <None Remove="Resources\Images\LeftAlign.png" />
+    <None Remove="Resources\Images\link.png" />
+    <None Remove="Resources\Images\new.png" />
+    <None Remove="Resources\Images\Numbered.png" />
+    <None Remove="Resources\Images\open.png" />
+    <None Remove="Resources\Images\OutIndent.png" />
+    <None Remove="Resources\Images\RightAlign.png" />
+    <None Remove="Resources\Images\save.png" />
+    <None Remove="Resources\Images\UnderLine.png" />
+    <None Remove="Resources\Images\view.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <COMReference Include="{215d64d2-031c-33c7-96e3-61794cd1ee61}">
+      <WrapperTool>tlbimp</WrapperTool>
+      <VersionMinor>4</VersionMinor>
+      <VersionMajor>2</VersionMajor>
+      <Guid>215d64d2-031c-33c7-96e3-61794cd1ee61</Guid>
+    </COMReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AvalonEdit" Version="6.3.0.90" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="8.0.0" />
+    <PackageReference Include="System.Drawing.Common" Version="8.0.0" />
+    <PackageReference Include="Unofficial.Microsoft.mshtml" Version="7.0.3300" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="System.Windows.Forms">
+      <HintPath>..\..\..\..\Windows\Microsoft.NET\Framework\v4.0.30319\System.Windows.Forms.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="data.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\ClipboardItems.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\FileItems.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="MainWindow.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </Page>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="XAML\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\Images\backcolor.png" />
+    <Resource Include="Resources\Images\bold.png" />
+    <Resource Include="Resources\Images\bullets.png" />
+    <Resource Include="Resources\Images\center.png" />
+    <Resource Include="Resources\Images\center2.png" />
+    <Resource Include="Resources\Images\Color.png" />
+    <Resource Include="Resources\Images\Editor.png" />
+    <Resource Include="Resources\Images\html.png" />
+    <Resource Include="Resources\Images\indent.png" />
+    <Resource Include="Resources\Images\image.png" />
+    <Resource Include="Resources\Images\italic.png" />
+    <Resource Include="Resources\Images\LeftAlign.png" />
+    <Resource Include="Resources\Images\link.png" />
+    <Resource Include="Resources\Images\new.png" />
+    <Resource Include="Resources\Images\Numbered.png" />
+    <Resource Include="Resources\Images\open.png" />
+    <Resource Include="Resources\Images\OutIndent.png" />
+    <Resource Include="Resources\Images\RightAlign.png" />
+    <Resource Include="Resources\Images\save.png" />
+    <Resource Include="Resources\Images\UnderLine.png" />
+    <Resource Include="Resources\Images\view.png" />
+  </ItemGroup>
+
+</Project>
