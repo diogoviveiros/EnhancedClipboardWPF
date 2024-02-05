@@ -22,6 +22,7 @@ using ListViewItem = System.Windows.Controls.ListViewItem;
 using ModifierKeys = EnhancedClipboardWPF.Core.ModifierKeys;
 using Window = System.Windows.Window;
 using EnhancedClipboardWPF.Core;
+using System.Linq;
 
 
 //ToDo: Add list for images, links
@@ -73,6 +74,66 @@ namespace EnhancedClipboardWPF
             }
         }
 
+    }
+
+    internal static class ClipboardFormats
+    {
+        static readonly string HEADER =
+            "Version:0.9\r\n" +
+            "StartHTML:{0:0000000000}\r\n" +
+            "EndHTML:{1:0000000000}\r\n" +
+            "StartFragment:{2:0000000000}\r\n" +
+            "EndFragment:{3:0000000000}\r\n";
+
+        static readonly string HTML_START =
+            "<html>\r\n" +
+            "<body>\r\n" +
+            "<!--StartFragment-->";
+
+        static readonly string HTML_END =
+            "<!--EndFragment-->\r\n" +
+            "</body>\r\n" +
+            "</html>";
+
+        public static string ConvertHtmlToClipboardData(string html)
+        {
+            var encoding = new System.Text.UTF8Encoding(encoderShouldEmitUTF8Identifier: false);
+            var data = Array.Empty<byte>();
+
+            if (html.IndexOf("<html") < 0)
+            {
+                html = html.Substring(html.IndexOf("<HTML"));
+            }
+            else
+            {
+                html = html.Substring(html.IndexOf("<html"));
+            }
+
+
+            var header = encoding.GetBytes(String.Format(HEADER, 0, 1, 2, 3));
+            data = data.Concat(header).ToArray();
+
+            var startHtml = data.Length;
+            data = data.Concat(encoding.GetBytes(HTML_START)).ToArray();
+
+            var startFragment = data.Length;
+            data = data.Concat(encoding.GetBytes(html)).ToArray();
+
+            var endFragment = data.Length;
+            data = data.Concat(encoding.GetBytes(HTML_END)).ToArray();
+
+            var endHtml = data.Length;
+
+            var newHeader = encoding.GetBytes(
+                String.Format(HEADER, startHtml, endHtml, startFragment, endFragment));
+            if (newHeader.Length != startHtml)
+            {
+                throw new InvalidOperationException(nameof(ConvertHtmlToClipboardData));
+            }
+
+            Array.Copy(newHeader, data, length: startHtml);
+            return encoding.GetString(data);
+        }
     }
 
     /// <summary>
@@ -247,7 +308,7 @@ namespace EnhancedClipboardWPF
                 StringCollection files = new StringCollection();
                 TemplateItem item = new TemplateItem();
 
-                IDataObject iData = Clipboard.GetDataObject();
+                
 
                 if (Clipboard.ContainsFileDropList())
                 {
@@ -435,12 +496,9 @@ namespace EnhancedClipboardWPF
         /// </summary>
         public void setDataToClipboard(int index, string data)
         {
-
-            Trace.WriteLine(data);
+          
             var dataObject = new DataObject();
-            dataObject.SetData(DataFormats.Html, data);
-            dataObject.SetData(DataFormats.Text, clipboardList[index].clipboardItem.body);
-            dataObject.SetData(DataFormats.UnicodeText, clipboardList[index].clipboardItem.body);
+            dataObject.SetData(DataFormats.Html, ClipboardFormats.ConvertHtmlToClipboardData(data));
             Clipboard.SetDataObject(dataObject);
         }
 
@@ -646,6 +704,8 @@ namespace EnhancedClipboardWPF
 
             clipboardItems[index].body = Clipboard.GetText();
             clipboardItems[index].NotifyPropertyChanged("body");
+
+            
 
             SaveTemplate();
         }

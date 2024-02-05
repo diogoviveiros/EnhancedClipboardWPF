@@ -10,6 +10,7 @@ using System.Windows.Controls;
 using System.IO;
 using System.Diagnostics;
 using System.Reflection;
+using System.Windows.Markup;
 
 namespace EnhancedClipboardWPF.Core
 {
@@ -95,7 +96,9 @@ namespace EnhancedClipboardWPF.Core
             {
                 doc.execCommand("SelectAll", true, null);
                 doc.execCommand("Copy", true, null);
-                
+
+                Trace.WriteLine("Data from Saved in Edit Window: ");
+                Trace.WriteLine(Clipboard.GetText());
             }
             
             
