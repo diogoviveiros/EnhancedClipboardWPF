@@ -696,10 +696,8 @@ namespace EnhancedClipboardWPF
            
 
             var data = Clipboard.GetData(DataFormats.Html).ToString();
-           
+         
             clipboardItems[index].data = data;
-
-
 
             clipboardItems[index].body = Clipboard.GetText();
             clipboardItems[index].NotifyPropertyChanged("body");

@@ -5,13 +5,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EnhancedClipboardWPF"
         mc:Ignorable="d"
-        Title="InsertTemplateContent" Height="450" Width="800"
-        Background="#282828">
+        Title="InsertTemplateContent" Height="250" Width="800"
+        Background="#282828"
+        ResizeMode="NoResize"
+        WindowStyle="None">
     
     <Grid>
 
         <StackPanel Orientation="Vertical">
-            <ListView x:Name="TemplatesView" Background="#282828" BorderThickness="0" HorizontalContentAlignment="Stretch" VirtualizingPanel.ScrollUnit="Pixel" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+            <ListView x:Name="TemplatesView" Background="#282828" BorderThickness="0" HorizontalContentAlignment="Stretch" VirtualizingPanel.ScrollUnit="Pixel" ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                      Width="800"
+                      Height="200">
             <ListView.ItemContainerStyle>
                 <Style TargetType="{x:Type ListViewItem}">
                     <Setter Property="BorderBrush" Value="LightGray" />
@@ -42,17 +46,17 @@
             </ListView>
 
 
-            <StackPanel Orientation="Horizontal">
-        <Button x:Name="ButtonOK" HorizontalAlignment="Left" Height="30" Margin="190,147,0,0" VerticalAlignment="Top" Width="92" Click="ButtonOK_Click" >
+            <StackPanel Orientation="Horizontal" Margin="295,0,0,0">
+        <Button x:Name="ButtonOK" HorizontalAlignment="Left" Height="30" VerticalAlignment="Top" Width="92" Click="ButtonOK_Click" >
             <StackPanel Orientation="Horizontal">
                 <TextBlock>OK</TextBlock>
                 <Image Height="16" Width="16" Margin="10,0,0,0"/>
             </StackPanel>
         </Button>
-        <Button x:Name="ButtonCancel" HorizontalAlignment="Left" Height="30" Margin="297,147,0,0" VerticalAlignment="Top" Width="92" Click="ButtonCancel_Click" >
+                <Button x:Name="ButtonCancel" HorizontalAlignment="Left" Height="30" Margin="30,0,0,0" VerticalAlignment="Top" Width="92" Click="ButtonCancel_Click" >
             <StackPanel Orientation="Horizontal">
                 <TextBlock>Cancel</TextBlock>
-                <Image Height="16" Width="16" Margin="10,0,0,0"/>
+                <Image Height="16" Width="16" Margin="0,0,0,0"/>
             </StackPanel>
         </Button>
             </StackPanel>
