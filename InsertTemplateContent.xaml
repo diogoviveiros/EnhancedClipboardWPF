@@ -13,9 +13,9 @@
     <Grid>
 
         <StackPanel Orientation="Vertical">
-            <ListView x:Name="TemplatesView" Background="#282828" BorderThickness="0" HorizontalContentAlignment="Stretch" VirtualizingPanel.ScrollUnit="Pixel" ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                      Width="800"
-                      Height="200">
+            <ListView x:Name="TemplatesView" Background="#282828" BorderThickness="0" HorizontalContentAlignment="Stretch" VirtualizingPanel.ScrollUnit="Pixel" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                      Width="800" 
+                      Height="200" >
             <ListView.ItemContainerStyle>
                 <Style TargetType="{x:Type ListViewItem}">
                     <Setter Property="BorderBrush" Value="LightGray" />
@@ -29,8 +29,8 @@
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <StackPanel>
-                        <Label Content= "{Binding inputName}" FontWeight="Bold" Foreground="#ffffff"/>
-                            <TextBox x:Name="inputText" Width="765"  Margin="5,0,0,0" Text="{Binding input}"/>
+                            <Label Content= "{Binding inputName}" ContentStringFormat="{}{0}:" FontWeight="Bold" Foreground="#ffffff"/>
+                            <TextBox x:Name="inputText" Width="765"  Margin="5,0,0,0" Text="{Binding input}" />
                     </StackPanel>
                     
                 </DataTemplate>
@@ -46,7 +46,7 @@
             </ListView>
 
 
-            <StackPanel Orientation="Horizontal" Margin="295,0,0,0">
+            <StackPanel Orientation="Horizontal" Margin="295,10,0,0">
         <Button x:Name="ButtonOK" HorizontalAlignment="Left" Height="30" VerticalAlignment="Top" Width="92" Click="ButtonOK_Click" >
             <StackPanel Orientation="Horizontal">
                 <TextBlock>OK</TextBlock>
