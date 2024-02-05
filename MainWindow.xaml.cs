@@ -17,7 +17,6 @@ using Button = System.Windows.Controls.Button;
 using Clipboard = System.Windows.Forms.Clipboard;
 using DataFormats = System.Windows.Forms.DataFormats;
 using DataObject = System.Windows.Forms.DataObject;
-using IDataObject = System.Windows.Forms.IDataObject;
 using ListViewItem = System.Windows.Controls.ListViewItem;
 using ModifierKeys = EnhancedClipboardWPF.Core.ModifierKeys;
 using Window = System.Windows.Window;

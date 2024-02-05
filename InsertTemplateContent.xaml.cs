@@ -12,8 +12,6 @@ namespace EnhancedClipboardWPF
     /// Interaction logic for InsertTemplateContent.xaml
     /// </summary>
     /// 
-    
-
     public partial class InsertTemplateContent : Window
     {
         private int index;
@@ -39,12 +37,6 @@ namespace EnhancedClipboardWPF
             
         }
 
-        public class listInputs
-        {
-            public string label { get; set; }
-            public string input { get; set; }
-        }
-
         private void ButtonOK_Click(object sender, RoutedEventArgs e)
         {
 
@@ -55,10 +47,6 @@ namespace EnhancedClipboardWPF
                 Trace.WriteLine("Replacing " + template.inputName + " with " + template.input);
                 data = data.Replace("[--&gt;" + template.inputName + "&lt;--]", template.input);
             } 
-
-                     
-
-
             ((MainWindow)this.Owner).setDataToClipboard(index, data);
             this.Close();
             
@@ -70,20 +58,6 @@ namespace EnhancedClipboardWPF
             this.Close();
            
         }
-
-        //Fixes HTML encoding to be shown properly in an MSHTML Webbrowser view. Otherwise, characters like Â get displayed randomly where line breaks should be
-        public string FixHtml(string HTML)
-        {
-            StringBuilder sb = new StringBuilder();
-            char[] s = HTML.ToCharArray();
-            foreach (char c in s)
-            {
-                if (Convert.ToInt32(c) > 127)
-                    sb.Append("&#" + Convert.ToInt32(c) + ";");
-                else
-                    sb.Append(c);
-            }
-            return sb.ToString();
-        }
+        
     }
 }
