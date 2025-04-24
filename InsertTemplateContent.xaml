@@ -22,6 +22,7 @@
                     <Setter Property="BorderThickness" Value="1,1,1,1" />
                     <Setter Property="Margin" Value="20, 0, 20, 5" />
                     <Setter Property="Focusable" Value="false"/>
+                    
                 </Style>
                     
                 </ListView.ItemContainerStyle>
@@ -53,7 +54,7 @@
                 <Image Height="16" Width="16" Margin="10,0,0,0"/>
             </StackPanel>
         </Button>
-                <Button x:Name="ButtonCancel" HorizontalAlignment="Left" Height="30" Margin="30,0,0,0" VerticalAlignment="Top" Width="92" Click="ButtonCancel_Click" >
+                <Button x:Name="ButtonCancel" HorizontalAlignment="Left" Height="30" Margin="25,0,0,0" VerticalAlignment="Top" Width="92" Click="ButtonCancel_Click" >
             <StackPanel Orientation="Horizontal">
                 <TextBlock>Cancel</TextBlock>
                 <Image Height="16" Width="16" Margin="0,0,0,0"/>

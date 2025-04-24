@@ -21,6 +21,7 @@
     <None Remove="Resources\Images\center.png" />
     <None Remove="Resources\Images\center2.png" />
     <None Remove="Resources\Images\Color.png" />
+    <None Remove="Resources\Images\Copilot.png" />
     <None Remove="Resources\Images\Editor.png" />
     <None Remove="Resources\Images\html.png" />
     <None Remove="Resources\Images\image.png" />
@@ -90,6 +91,7 @@
     <Resource Include="Resources\Images\center.png" />
     <Resource Include="Resources\Images\center2.png" />
     <Resource Include="Resources\Images\Color.png" />
+    <Resource Include="Resources\Images\Copilot.png" />
     <Resource Include="Resources\Images\Editor.png" />
     <Resource Include="Resources\Images\html.png" />
     <Resource Include="Resources\Images\indent.png" />

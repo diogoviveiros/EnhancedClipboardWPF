@@ -22,6 +22,7 @@ using ModifierKeys = EnhancedClipboardWPF.Core.ModifierKeys;
 using Window = System.Windows.Window;
 using EnhancedClipboardWPF.Core;
 using System.Linq;
+using static System.Net.Mime.MediaTypeNames;
 
 
 //ToDo: Add list for images, links
@@ -266,7 +267,9 @@ namespace EnhancedClipboardWPF
                 {
                     clipboardItem.clipboardItem.NotifyPropertyChanged("body");
                 }
-               
+
+                File.WriteAllText(Application.StartupPath + @"\Resources\ClipboardItems.json", JsonConvert.SerializeObject(clipboardList));
+
             }
 
 
@@ -462,7 +465,7 @@ namespace EnhancedClipboardWPF
                     }
                     else
                     {
-                        setDataToClipboard(index, data);
+                        setDataToClipboard(data);
                     }
 
 
@@ -493,12 +496,15 @@ namespace EnhancedClipboardWPF
         /// <summary>
         /// Packs the selected data to a DataObject and injects that into the Clipboard
         /// </summary>
-        public void setDataToClipboard(int index, string data)
+        public void setDataToClipboard(string data)
         {
+
+            Trace.WriteLine(ClipboardFormats.ConvertHtmlToClipboardData(data));
           
             var dataObject = new DataObject();
             dataObject.SetData(DataFormats.Html, ClipboardFormats.ConvertHtmlToClipboardData(data));
             Clipboard.SetDataObject(dataObject);
+            this.Visibility = Visibility.Collapsed;
         }
 
 
@@ -672,11 +678,30 @@ namespace EnhancedClipboardWPF
 
         }
 
+        private void OpenCopilotWindow(object sender, RoutedEventArgs e)
+        {
 
-        /// <summary>
-        /// Finds the correct item that is being pressed in the ListViewItem. This avoids the ListViewItem being selected when one of the buttons (i.e. Delete, up, down, Open Edit View) is pressed.
-        /// </summary>
-        private static T FindParent<T>(DependencyObject dependencyObject) where T : DependencyObject
+            Button button = sender as Button;
+            TemplateItem item = button.DataContext as TemplateItem;
+            int index = clipboardItems.IndexOf(item);
+
+
+            string plainText = clipboardItems[index].body;
+            string data = clipboardItems[index].data;
+
+            Copilot c1 = new Copilot(plainText, data);
+
+            c1.Show();
+            c1.Owner = this;
+
+
+        }
+
+
+            /// <summary>
+            /// Finds the correct item that is being pressed in the ListViewItem. This avoids the ListViewItem being selected when one of the buttons (i.e. Delete, up, down, Open Edit View) is pressed.
+            /// </summary>
+            private static T FindParent<T>(DependencyObject dependencyObject) where T : DependencyObject
         {
             var parent = VisualTreeHelper.GetParent(dependencyObject);
             if (parent == null)
@@ -705,6 +730,23 @@ namespace EnhancedClipboardWPF
             
 
             SaveTemplate();
+        }
+
+        private void OnButtonKeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+
+            Trace.WriteLine("OnButtonKeyDown: Key pressed is " + (int)e.Key);
+            int keyValue = (int)e.Key;
+            //For keyboard numbers
+            if (keyValue >= 34 && keyValue <= 43)
+            {
+                setDataToClipboard(clipboardItems[(int)(e.Key) - 34].data);
+                //For numpad numbers
+            }
+            else if (keyValue >= 74 && keyValue <= 83)
+            {
+                setDataToClipboard(clipboardItems[(int)(e.Key) - 34].data);
+            }
         }
 
 

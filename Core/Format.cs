@@ -1,4 +1,5 @@
-﻿using mshtml;
+﻿using System.Windows.Markup;
+using mshtml;
 
 namespace EnhancedClipboardWPF.Core
 {
@@ -127,6 +128,13 @@ namespace EnhancedClipboardWPF.Core
             
         }
 
+        public static void LaunchCopilotWindow()
+        {
+            Copilot c1 = new Copilot(doc.body.innerText, doc.body.innerHTML);
+
+            c1.Show();
+            
+        }
 
     }
 }

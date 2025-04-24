@@ -8,6 +8,7 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
+using System.Windows.Markup;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
@@ -195,6 +196,21 @@ namespace EnhancedClipboardWPF
             
         }
 
+        private void AddPresetButton_Click(object sender, RoutedEventArgs e)
+        {
+            var addButton = sender as FrameworkElement;
+            if (addButton != null)
+            {
+                addButton.ContextMenu.IsOpen = true;
+            }
+        }
+
+        private void LaunchCopilotWindow_Click(object sender, RoutedEventArgs e)
+        {
+
+
+            Format.LaunchCopilotWindow();
+        }
     }
 }
 

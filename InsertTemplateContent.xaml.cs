@@ -47,7 +47,7 @@ namespace EnhancedClipboardWPF
                 Trace.WriteLine("Replacing " + template.inputName + " with " + template.input);
                 data = data.Replace("[--&gt;" + template.inputName + "&lt;--]", template.input);
             } 
-            ((MainWindow)this.Owner).setDataToClipboard(index, data);
+            ((MainWindow)this.Owner).setDataToClipboard(data);
             this.Close();
             
         }

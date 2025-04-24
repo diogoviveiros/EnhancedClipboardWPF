@@ -1,0 +1,52 @@
+﻿<Window x:Class="EnhancedClipboardWPF.Copilot"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:EnhancedClipboardWPF"
+        mc:Ignorable="d"
+        Title="Copilot" Height="320" Width="600"
+        ResizeMode="NoResize"
+        WindowStyle="None"
+        Background="#282828">
+    
+    
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="61*"/>
+            <ColumnDefinition Width="239*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Margin="0,20,0,0" Grid.ColumnSpan="2">
+            <ScrollViewer Margin="15,0,30,0" Height="100" ScrollViewer.VerticalScrollBarVisibility="Hidden"
+ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                <TextBlock x:Name="content" Text="{Binding content}"  Foreground="#d8d9d9"/>
+
+            </ScrollViewer>
+
+
+
+            <TextBox x:Name="description" HorizontalAlignment="Left" Height="120" Margin="19,3,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="550" Text="Instructions" GotFocus="TextBox_GotFocus"/>
+            <Label Name="Disclaimer" Margin="15,0,31,0" Foreground="#d8d9d9">The Output for These Instructions will be AI generated</Label>
+
+            <StackPanel Orientation="Horizontal" Margin="185,10,0,0">
+
+                <Button x:Name="ButtonGenerate" Click="ButtonGenerate_Click" HorizontalAlignment="Left" Height="30" VerticalAlignment="Top" Width="92" >
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock>Generate</TextBlock>
+                        <Image Height="16" Width="16" Margin="10,0,0,0"/>
+                    </StackPanel>
+                </Button>
+                <Button x:Name="ButtonCancel" HorizontalAlignment="Left" Height="30" Click="ButtonCancel_Click" VerticalAlignment="Top" Width="92" Margin="30,0,0,0">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock>Cancel</TextBlock>
+                        <Image Height="16" Width="16" Margin="10,0,0,0"/>
+                    </StackPanel>
+                </Button>
+            </StackPanel>
+
+
+
+        </StackPanel>
+
+    </Grid>
+</Window>

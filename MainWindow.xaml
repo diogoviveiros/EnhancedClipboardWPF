@@ -10,7 +10,8 @@
         Visibility="Hidden"
         ResizeMode="NoResize"
         Background="#282828"
-        WindowStyle="None">
+        WindowStyle="None"
+        >
 
     <WindowChrome.WindowChrome>
         <WindowChrome CaptionHeight="48" ResizeBorderThickness="{x:Static SystemParameters.WindowResizeBorderThickness}" />
@@ -100,7 +101,7 @@
 
 
 
-                            <StackPanel Orientation="Horizontal" Height="75">
+                            <StackPanel Orientation="Horizontal" Height="85">
 
 
                                 <StackPanel Orientation="Horizontal" Width="276" HorizontalAlignment="Stretch" MouseLeftButtonDown="SavedClipboardList_ItemClick">
@@ -116,9 +117,19 @@
 
                                 <StackPanel Orientation="Vertical" HorizontalAlignment="Right" Width="Auto">
                                     <Button BorderThickness="0" Background="Transparent" Foreground="#FFFFFF" Click="OpenEditWindow">...</Button>
+                                    
+                                    
+                                    <!--<Button BorderThickness="0" Click="OpenCopilotWindow" Width="15" Height="15">
+    
+                                        <Button.Background>
+                                            <ImageBrush ImageSource="Resources\Images\Copilot.png" Stretch="Fill" TileMode="None" />
+                                        </Button.Background>
+                                        
+                                    </Button>-->
                                     <Button BorderThickness="0" Background="Transparent" Foreground="#FFFFFF" Click="RaiseListPriority">↑</Button>
                                     <Button BorderThickness="0" Background="Transparent" Foreground="#FFFFFF" Click="LowerListPriority">↓</Button>
                                     <Button BorderThickness="0" Background="Transparent" Foreground="#FFFFFF" Click="btnRemove_Click">X</Button>
+                                    
 
                                     <StackPanel.Resources>
                                         <Style TargetType="{x:Type Button}">
